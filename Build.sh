@@ -33,15 +33,17 @@ echo "*                                                   *"
 echo "*         Ubuntu docker container builder           *"
 echo "*                                                   *"
 echo "*****************************************************"
+echo ""
 
-
+# Build base container image
 sudo docker build -t="intlabs/dockerfile-cannyos-ubuntu-14_04-base" github.com/intlabs/dockerfile-cannyos-ubuntu-14_04-base
 
-
-
+# Make shared directory on host
 sudo mkdir -p "/CannyOS/build/dockerfile-cannyos-ubuntu-14_04-base"
-sudo rm -f "/CannyOS/build/dockerfile-cannyos-ubuntu-14_04-base/done"
+# Ensure that there it is clear
+sudo rm -r -f "/CannyOS/build/dockerfile-cannyos-ubuntu-14_04-base/*"
 
+# Launch Built base container image
 sudo docker run -i -t --rm --privileged=true --lxc-conf="native.cgroup.devices.allow = c 10:229 rwm" -v /CannyOS/build/dockerfile-cannyos-ubuntu-14_04-base:/CannyOS/Host intlabs/dockerfile-cannyos-ubuntu-14_04-base &
 
 x=0
