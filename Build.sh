@@ -44,17 +44,22 @@ sudo mkdir -p "/CannyOS/build/dockerfile-cannyos-ubuntu-14_04-base"
 sudo rm -r -f "/CannyOS/build/dockerfile-cannyos-ubuntu-14_04-base/*"
 
 # Launch Built base container image
-sudo docker run -i -t --rm --privileged=true --lxc-conf="native.cgroup.devices.allow = c 10:229 rwm" -v /CannyOS/build/dockerfile-cannyos-ubuntu-14_04-base:/CannyOS/Host intlabs/dockerfile-cannyos-ubuntu-14_04-base &
+sudo docker run -i -t -d \
+ --privileged=true --lxc-conf="native.cgroup.devices.allow = c 10:229 rwm" \
+ --v "/CannyOS/build/dockerfile-cannyos-ubuntu-14_04-base":"/CannyOS/Host" \
+ --name "dockerfile-cannyos-ubuntu-14_04-base" \
+ intlabs/dockerfile-cannyos-ubuntu-14_04-base
 
 x=0
 while [ "$x" -lt 3600 -a ! -e "/CannyOS/build/dockerfile-cannyos-ubuntu-14_04-base/done" ]; do
    x=$((x+1))
    sleep 1.0
-   echo "Post Install script run time: $x seconds"
+   echo -n "Post Install script run time: $x seconds"
 done
 if [ -e "/CannyOS/build/dockerfile-cannyos-ubuntu-14_04-base/done" ]
 then
    echo "Completed Post Install Script in container"
+   sudo docker commit -m="Added json gem" -a="Kate Smith" 
 else
    echo "Post Install Script in container timed out"
 fi
