@@ -51,6 +51,9 @@ sudo mkdir -p "/CannyOS/build/dockerfile-cannyos-ubuntu-14_04-base"
 # Ensure that there it is clear
 sudo rm -r -f "/CannyOS/build/dockerfile-cannyos-ubuntu-14_04-base/*"
 
+# Remove any old containers
+sudo docker rm dockerfile-cannyos-ubuntu-14_04-base
+
 # Launch built base container image
 sudo docker run -i -t -d \
  --privileged=true --lxc-conf="native.cgroup.devices.allow = c 10:229 rwm" \
