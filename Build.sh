@@ -62,7 +62,7 @@ sudo docker run -i -t -d \
 echo ""
 echo "*****************************************************"
 echo "*                                                   *"
-echo "*         Launched base cointainer image            *"
+echo "*         Launched base container image             *"
 echo "*                                                   *"
 echo "*****************************************************"
 echo ""
@@ -83,8 +83,7 @@ then
 	echo "*                                                   *"
 	echo "*****************************************************"
 	echo ""
-   sudo docker commit -m="Installed FUSE" -a="Pete Birley" dockerfile-cannyos-ubuntu-14_04-base intlabs/dockerfile-cannyos-ubuntu-14_04-fuse
-   sudo docker stop dockerfile-cannyos-ubuntu-14_04-base
+
 else
 	echo ""
 	echo "*****************************************************"
@@ -94,3 +93,30 @@ else
 	echo "*****************************************************"
 	echo ""
 fi
+
+#Commit the container image
+sudo docker commit -m="Installed FUSE" -a="Pete Birley" dockerfile-cannyos-ubuntu-14_04-base intlabs/dockerfile-cannyos-ubuntu-14_04-fuse
+
+# Shut down the base image
+sudo docker stop dockerfile-cannyos-ubuntu-14_04-base
+
+echo ""
+echo "*****************************************************"
+echo "*                                                   *"
+echo "* CannyOS/dockerfile-cannyos-ubuntu-14_04-fuse  :)  *"
+echo "*                                                   *"
+echo "*****************************************************"
+echo ""
+
+
+# Make shared directory on host
+sudo mkdir -p "/CannyOS/build/dockerfile-cannyos-ubuntu-14_04-fuse"
+# Ensure that there it is clear
+sudo rm -r -f "/CannyOS/build/dockerfile-cannyos-ubuntu-14_04-fuse/*"
+
+sudo docker run -i -t -rm \
+ --privileged=true --lxc-conf="native.cgroup.devices.allow = c 10:229 rwm" \
+ --volume "/CannyOS/build/dockerfile-cannyos-ubuntu-14_04-fuse":"/CannyOS/Host" \
+ --name "dockerfile-cannyos-ubuntu-14_04-fuse" \
+ --user "root" \
+ intlabs/dockerfile-cannyos-ubuntu-14_04-fuse
