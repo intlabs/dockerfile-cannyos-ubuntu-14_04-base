@@ -33,6 +33,8 @@ echo "*                                                   *"
 echo "*****************************************************"
 echo ""
 
+rm -f "/CannyOS/Host/done"
+
 # Put content of script here
 
 #Install OpenSSH server
