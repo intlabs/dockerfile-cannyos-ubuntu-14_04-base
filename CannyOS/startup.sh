@@ -2,8 +2,8 @@
 # (c) Pete Birley
 
 # Run postinstall script if required.
-if [ post-install.sh ]; then
-	post-install.sh
+if [ /CannyOS/post-install.sh ]; then
+	/CannyOS/post-install.sh
 fi
 
 # Startup ssh

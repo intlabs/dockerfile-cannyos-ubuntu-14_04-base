@@ -12,4 +12,4 @@ echo "***************************************************************"
 echo "***************************************************************"
 
 #Move post-install script and timestamp it
-mv "post-install.sh" "post-install.sh.done.$(date +%Y_%m_%d.%H_%M_%S)"
+mv "/CannyOS/post-install.sh" "/CannyOS/post-install.sh.done.$(date +%Y_%m_%d.%H_%M_%S)"
