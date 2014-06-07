@@ -59,8 +59,7 @@ sudo rm -r -f "/CannyOS/build/dockerfile-cannyos-ubuntu-14_04-base/*"
 # Remove any old containers
 sudo docker stop dockerfile-cannyos-ubuntu-14_04-base && \
 sudo docker kill dockerfile-cannyos-ubuntu-14_04-base && \
-sudo docker rm dockerfile-cannyos-ubuntu-14_04-base && \
-sudo docker rmi intlabs/dockerfile-cannyos-ubuntu-14_04-base
+sudo docker rm dockerfile-cannyos-ubuntu-14_04-base
 
 # Launch built base container image
 sudo docker run -i -t -d \

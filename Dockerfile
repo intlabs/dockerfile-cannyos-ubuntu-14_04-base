@@ -21,6 +21,8 @@
 # Pull base image.
 FROM ubuntu:14.04
 
+MAINTAINER "Pete Birley (petebirley@gmail.com)"
+
 # Install base utilities.
 RUN \
   sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
