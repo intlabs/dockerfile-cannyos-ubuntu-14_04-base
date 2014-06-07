@@ -33,3 +33,6 @@ echo ""
 
 #Move post-install script and timestamp it
 mv "/CannyOS/post-install.sh" "/CannyOS/post-install.done.$(date +%Y_%m_%d.%H_%M_%S)"
+
+#Create bash shell
+bash &
