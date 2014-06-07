@@ -53,6 +53,8 @@ sudo mkdir -p "/CannyOS/build/dockerfile-cannyos-ubuntu-14_04-base"
 sudo rm -r -f "/CannyOS/build/dockerfile-cannyos-ubuntu-14_04-base/*"
 
 # Remove any old containers
+sudo docker stop dockerfile-cannyos-ubuntu-14_04-base && \
+sudo docker kill dockerfile-cannyos-ubuntu-14_04-base && \
 sudo docker rm dockerfile-cannyos-ubuntu-14_04-base
 
 # Launch built base container image
@@ -99,7 +101,7 @@ else
 fi
 
 #Get the container id
-CONTAINERID=$(sudo docker ps | grep "dockerfile-cannyos-ubuntu-14_04-base" | head -n 1 | awk 'BEGIN { FS = "[ \t]+" } { print $1 }' )
+CONTAINERID=$(sudo docker ps | grep "dockerfile-cannyos-ubuntu-14_04-base" | head -n 1 | awk 'BEGIN { FS = "[ \t]+" } { print $1 }' ) && echo "$CONTAINERID"
 
 #Commit the container image
 sudo docker commit -m="Installed FUSE" -a="Pete Birley" $CONTAINERID intlabs/dockerfile-cannyos-ubuntu-14_04-fuse
