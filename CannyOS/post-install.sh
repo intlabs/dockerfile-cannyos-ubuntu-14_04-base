@@ -5,7 +5,7 @@ echo "***************************************************************"
 echo "***************************************************************"
 echo "**                                                           **"
 echo "**                                                           **"
-echo "**          CannyOS post install script starting             **"
+echo "**          CannyOS post-install script starting             **"
 echo "**                                                           **"
 echo "**                                                           **"
 echo "***************************************************************"
@@ -13,6 +13,9 @@ echo "***************************************************************"
 
 # Put content of script here
 
+#Install ssh server
+apt-get install -y openssh-server
+mkdir -p /var/run/sshd 
 
 
 
@@ -20,7 +23,7 @@ echo "***************************************************************"
 echo "***************************************************************"
 echo "**                                                           **"
 echo "**                                                           **"
-echo "**         CannyOS post install script completed             **"
+echo "**         CannyOS post-install script completed             **"
 echo "**                                                           **"
 echo "**                                                           **"
 echo "***************************************************************"

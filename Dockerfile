@@ -21,7 +21,7 @@ RUN \
 ADD root/.bashrc /root/.bashrc
 ADD root/.gitconfig /root/.gitconfig
 ADD root/scripts /root/scripts
-RUN chmod -R +x /root/scripts/
+RUN chmod -R +x /root/scripts/*
 
 # Set environment variables.
 ENV HOME /root
@@ -34,11 +34,7 @@ RUN dpkg-divert --local --rename --add /sbin/initctl && ln -sf /bin/true /sbin/i
 RUN adduser --disabled-password --gecos "" user
 RUN echo 'user:acoman' |chpasswd
 
-#Install ssh server
-RUN apt-get install -y openssh-server
-RUN mkdir -p /var/run/sshd 
-
-#Install startup & post install script
+#Add startup & post-install script
 WORKDIR /CannyOS
 ADD CannyOS/startup.sh CannyOS/startup.sh
 RUN chmod +x /CannyOS/startup.sh
@@ -56,4 +52,4 @@ ENTRYPOINT ["/CannyOS/startup.sh"]
 
 # Expose ports.
 #SSH
-EXPOSE 22/tcp
+#EXPOSE 22/tcp
