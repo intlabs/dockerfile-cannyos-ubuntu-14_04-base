@@ -37,9 +37,11 @@ echo "*****************************************************"
 
 sudo docker build -t="intlabs/dockerfile-cannyos-ubuntu-14_04-base" github.com/intlabs/dockerfile-cannyos-ubuntu-14_04-base
 
-CONTAINER_MOUNT_POINT="~/CannyOS/dockerfile-cannyos-ubuntu-14_04-base"
+sudo CONTAINER_MOUNT_POINT="/CannyOS/build/dockerfile-cannyos-ubuntu-14_04-base"
 
 mkdir -p "$CONTAINER_MOUNT_POINT"
+rm -f "$CONTAINER_MOUNT_POINT/done"
+
 sudo docker run -i -t --rm --privileged=true --lxc-conf="native.cgroup.devices.allow = c 10:229 rwm" -v $CONTAINER_MOUNT_POINT:/CannyOS/Host intlabs/dockerfile-cannyos-ubuntu-14_04-base &
 
 x=0
