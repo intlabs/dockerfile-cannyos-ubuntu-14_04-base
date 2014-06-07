@@ -124,7 +124,10 @@ sudo mkdir -p "/CannyOS/build/dockerfile-cannyos-ubuntu-14_04-fuse"
 sudo rm -r -f "/CannyOS/build/dockerfile-cannyos-ubuntu-14_04-fuse/*"
 
 # Remove any old containers
+sudo docker stop dockerfile-cannyos-ubuntu-14_04-fuse && \
+sudo docker kill dockerfile-cannyos-ubuntu-14_04-fuse && \
 sudo docker rm dockerfile-cannyos-ubuntu-14_04-fuse
+
 
 sudo docker run -i -t --rm \
  --privileged=true --lxc-conf="native.cgroup.devices.allow = c 10:229 rwm" \
