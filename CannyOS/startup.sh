@@ -48,7 +48,7 @@ echo ""
 #Startup script begins:
 
 # Startup ssh server to allow incomming connections.
-/usr/sbin/sshd -D &
+#/usr/sbin/sshd -D &
 
 
 echo ""
