@@ -14,14 +14,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
-# Run postinstall script if required.
-if [ -e /CannyOS/post-install.sh ]; then
-	/CannyOS/post-install.sh
-	exit
-fi
-
-echo ""
 cat /CannyOS/CannyOS.splash
 #     *****************************************************
 #     *                                                   *
@@ -33,6 +25,20 @@ cat /CannyOS/CannyOS.splash
 #     *                                                   *
 #     *                                                   *
 #     *****************************************************
+echo "*                                                   *"
+echo "*      WELCOME TO A CANNYOS DOCKER CONTAINER        *"
+echo "*                                                   *"
+echo "*****************************************************"
+echo ""
+
+# Run postinstall script if required.
+if [ -e /CannyOS/post-install.sh ]; then
+	/CannyOS/post-install.sh
+	exit
+fi
+
+echo ""
+echo "*****************************************************"
 echo "*                                                   *"
 echo "*         Startup script launch                     *"
 echo "*                                                   *"
@@ -46,17 +52,7 @@ echo ""
 
 
 echo ""
-cat /CannyOS/CannyOS.splash
-#     *****************************************************
-#     *                                                   *
-#     *        _____                    ____  ____        *
-#     *       / ___/__ ____  ___  __ __/ __ \/ __/        *
-#     *      / /__/ _ `/ _ \/ _ \/ // / /_/ /\ \          *
-#     *      \___/\_,_/_//_/_//_/\_, /\____/___/          *
-#     *                         /___/                     *
-#     *                                                   *
-#     *                                                   *
-#     *****************************************************
+echo "*****************************************************"
 echo "*                                                   *"
 echo "*         Startup script finish                     *"
 echo "*                                                   *"
