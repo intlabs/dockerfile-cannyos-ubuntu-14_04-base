@@ -40,6 +40,9 @@ RUN chmod -R +x /root/scripts/*
 ENV HOME /root
 ENV DEBIAN_FRONTEND noninteractive
 
+# Set the working directory
+WORKDIR /
+
 # Upstart and DBus have issues inside docker.
 RUN dpkg-divert --local --rename --add /sbin/initctl && ln -sf /bin/true /sbin/initctl
 
@@ -48,10 +51,9 @@ RUN adduser --disabled-password --gecos "" user
 RUN echo 'user:acoman' |chpasswd
 
 #Add startup & post-install script
-WORKDIR /CannyOS
-ADD CannyOS/startup.sh CannyOS/startup.sh
+ADD /CannyOS/startup.sh /CannyOS/startup.sh
 RUN chmod +x /CannyOS/startup.sh
-ADD CannyOS/post-install.sh CannyOS/post-install.sh
+ADD /CannyOS/post-install.sh /CannyOS/post-install.sh
 RUN chmod +x /CannyOS/post-install.sh
 
 # Define mountable directories.
@@ -62,7 +64,3 @@ WORKDIR /data
 
 # Define default command.
 ENTRYPOINT ["/CannyOS/startup.sh"]
-
-# Expose ports.
-#SSH
-#EXPOSE 22/tcp
