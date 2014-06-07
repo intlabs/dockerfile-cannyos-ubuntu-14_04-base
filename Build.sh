@@ -83,7 +83,8 @@ then
 	echo "*                                                   *"
 	echo "*****************************************************"
 	echo ""
-   #sudo docker commit -m="Added json gem" -a="Kate Smith" 
+   sudo docker commit -m="Installed FUSE" -a="Pete Birley" dockerfile-cannyos-ubuntu-14_04-base intlabs/dockerfile-cannyos-ubuntu-14_04-fuse
+   sudo docker stop dockerfile-cannyos-ubuntu-14_04-base
 else
 	echo ""
 	echo "*****************************************************"
@@ -92,5 +93,4 @@ else
 	echo "*                                                   *"
 	echo "*****************************************************"
 	echo ""
-
 fi
