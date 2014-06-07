@@ -20,25 +20,8 @@ This repository contains the *Dockerfile* and *associated files* for setting up 
 
 	`sudo docker build -t="intlabs/dockerfile-cannyos-ubuntu-14_04-base" github.com/intlabs/dockerfile-cannyos-ubuntu-14_04-base`
 
-### SuperQuick Install
-
-	This will get you going superfast - one line! - from a fresh Ubuntu install (rememebr to update the /etc/hosts file to relect your hostname at 127.0.1.1)
-
-	sudo apt-get -y update && \
-	sudo apt-get -y install docker.io && \
-	sudo ln -sf /usr/bin/docker.io /usr/local/bin/docker && \
-	sudo restart docker.io && \
-	sudo docker pull intlabs/dockerfile-ubuntu-openstack-commandline-clients && \
-	sudo docker run -it --rm -p 222:22 intlabs/dockerfile-ubuntu-openstack-commandline-clients
-
-
 ### Usage
 
-#### Starting
-
-* Change the port number to run multiple instances on the same host (remeber to open the ports for ingress)
-
-* this will run and drop you into a session:
+* this will run and drop you into a session with privileges to run FUSE:
 
 `sudo docker run -it --rm --privileged=true --lxc-conf="native.cgroup.devices.allow = c 10:229 rwm" intlabs/dockerfile-cannyos-ubuntu-14_04-base`
-
