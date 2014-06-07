@@ -16,12 +16,13 @@ This repository contains the *Dockerfile* and *associated files* for setting up 
 
 	`sudo apt-get -y update && sudo apt-get -y install docker.io && sudo ln -sf /usr/bin/docker.io /usr/local/bin/docker && sudo restart docker.io`
 
-2. You can then build the container from the Dockerfile:
+2. You can then build the container set from the via entering:
+
+	`wget -O - https://raw.githubusercontent.com/intlabs/dockerfile-cannyos-ubuntu-14_04-base/master/Build.sh | bash`
+
 
 	`sudo docker build -t="intlabs/dockerfile-cannyos-ubuntu-14_04-base" github.com/intlabs/dockerfile-cannyos-ubuntu-14_04-base`
 
-
-wget -O - https://raw.githubusercontent.com/intlabs/dockerfile-cannyos-ubuntu-14_04-base/master/Build.sh | bash
 ### Usage
 
 * this will run and drop you into a session with privileges to run FUSE:
