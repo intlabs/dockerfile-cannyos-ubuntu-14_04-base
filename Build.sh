@@ -38,12 +38,20 @@ echo ""
 # Build base container image
 sudo docker build -t="intlabs/dockerfile-cannyos-ubuntu-14_04-base" github.com/intlabs/dockerfile-cannyos-ubuntu-14_04-base
 
+echo ""
+echo "*****************************************************"
+echo "*                                                   *"
+echo "*         Built base container image                *"
+echo "*                                                   *"
+echo "*****************************************************"
+echo ""
+
 # Make shared directory on host
 sudo mkdir -p "/CannyOS/build/dockerfile-cannyos-ubuntu-14_04-base"
 # Ensure that there it is clear
 sudo rm -r -f "/CannyOS/build/dockerfile-cannyos-ubuntu-14_04-base/*"
 
-# Launch Built base container image
+# Launch built base container image
 sudo docker run -i -t -d \
  --privileged=true --lxc-conf="native.cgroup.devices.allow = c 10:229 rwm" \
  --volume "/CannyOS/build/dockerfile-cannyos-ubuntu-14_04-base":"/CannyOS/Host" \
@@ -51,16 +59,38 @@ sudo docker run -i -t -d \
  --user "root" \
  intlabs/dockerfile-cannyos-ubuntu-14_04-base
 
+echo ""
+echo "*****************************************************"
+echo "*                                                   *"
+echo "*         Launched base cointainer image            *"
+echo "*                                                   *"
+echo "*****************************************************"
+echo ""
+
+# Wait for post-install script to finish running (Currently time out at ) 
 x=0
-while [ "$x" -lt 3600 -a ! -e "/CannyOS/build/dockerfile-cannyos-ubuntu-14_04-base/done" ]; do
+while [ "$x" -lt 43200 -a ! -e "/CannyOS/build/dockerfile-cannyos-ubuntu-14_04-base/done" ]; do
    x=$((x+1))
    sleep 1.0
    echo -n "Post Install script run time: $x seconds"
 done
 if [ -e "/CannyOS/build/dockerfile-cannyos-ubuntu-14_04-base/done" ]
 then
-   echo "Completed Post Install Script in container"
-   sudo docker commit -m="Added json gem" -a="Kate Smith" 
+	echo ""
+	echo "*****************************************************"
+	echo "*                                                   *"
+	echo "*   host detected post install script competion     *"
+	echo "*                                                   *"
+	echo "*****************************************************"
+	echo ""
+   #sudo docker commit -m="Added json gem" -a="Kate Smith" 
 else
-   echo "Post Install Script in container timed out"
+	echo ""
+	echo "*****************************************************"
+	echo "*                                                   *"
+	echo "*         Post install script timeout               *"
+	echo "*                                                   *"
+	echo "*****************************************************"
+	echo ""
+
 fi
