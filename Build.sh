@@ -36,6 +36,10 @@ echo "*                                                   *"
 echo "*****************************************************"
 echo ""
 
+
+# Remove old image if it exists
+sudo docker rmi intlabs/dockerfile-cannyos-ubuntu-14_04-base
+
 # Build base container image
 sudo docker build -t="intlabs/dockerfile-cannyos-ubuntu-14_04-base" github.com/intlabs/dockerfile-cannyos-ubuntu-14_04-base
 
