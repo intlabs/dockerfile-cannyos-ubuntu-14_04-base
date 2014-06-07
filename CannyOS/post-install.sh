@@ -48,5 +48,11 @@ echo ""
 #Move post-install script and timestamp it
 mv "/CannyOS/post-install.sh" "/CannyOS/post-install.done.$(date +%Y_%m_%d.%H_%M_%S)"
 
+#Wait 30 seconds
+sleep 30
+
+#Mark the post-install script as complete to the host
+touch "/CannyOS/Host/done"
+
 #Create bash shell
 bash 
