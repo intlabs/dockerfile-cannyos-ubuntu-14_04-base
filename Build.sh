@@ -117,6 +117,9 @@ sudo mkdir -p "/CannyOS/build/dockerfile-cannyos-ubuntu-14_04-fuse"
 # Ensure that there it is clear
 sudo rm -r -f "/CannyOS/build/dockerfile-cannyos-ubuntu-14_04-fuse/*"
 
+# Remove any old containers
+sudo docker rm dockerfile-cannyos-ubuntu-14_04-fuse
+
 sudo docker run -i -t -rm \
  --privileged=true --lxc-conf="native.cgroup.devices.allow = c 10:229 rwm" \
  --volume "/CannyOS/build/dockerfile-cannyos-ubuntu-14_04-fuse":"/CannyOS/Host" \

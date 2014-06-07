@@ -35,9 +35,16 @@ echo ""
 
 # Put content of script here
 
-#Install ssh server
+#Install OpenSSH server
 apt-get install -y openssh-server
 mkdir -p /var/run/sshd 
+
+# Install FUSE
+apt-get install -y fuse fuselib
+
+# Install SSHFS
+apt-get install -y sshfs
+
 
 echo ""
 cat /CannyOS/CannyOS.splash

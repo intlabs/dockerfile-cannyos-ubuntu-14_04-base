@@ -18,9 +18,10 @@ This repository contains the *Dockerfile* and *associated files* for setting up 
 
 2. You can then build the container set from the via entering:
 
-	`wget -O - https://raw.githubusercontent.com/intlabs/dockerfile-cannyos-ubuntu-14_04-base/master/Build.sh | bash`
 
+	`bash <(curl -s https://raw.githubusercontent.com/intlabs/dockerfile-cannyos-ubuntu-14_04-base/master/Build.sh)`
 
+	Manual building (not recommended) can be done with the following:
 	`sudo docker build -t="intlabs/dockerfile-cannyos-ubuntu-14_04-base" github.com/intlabs/dockerfile-cannyos-ubuntu-14_04-base`
 
 ### Usage
