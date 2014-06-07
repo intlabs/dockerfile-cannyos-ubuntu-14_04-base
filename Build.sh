@@ -18,6 +18,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+clear
 curl https://raw.githubusercontent.com/intlabs/dockerfile-cannyos-ubuntu-14_04-base/master/CannyOS/CannyOS.splash
 #     *****************************************************
 #     *                                                   *
@@ -97,8 +98,11 @@ else
 	echo ""
 fi
 
+#Get the container id
+CONTAINERID=$(sudo docker ps | grep "dockerfile-cannyos-ubuntu-14_04-base" | head -n 1 | awk 'BEGIN { FS = "[ \t]+" } { print $1 }' )
+
 #Commit the container image
-sudo docker commit -m="Installed FUSE" -a="Pete Birley" dockerfile-cannyos-ubuntu-14_04-base intlabs/dockerfile-cannyos-ubuntu-14_04-fuse
+sudo docker commit -m="Installed FUSE" -a="Pete Birley" $CONTAINERID intlabs/dockerfile-cannyos-ubuntu-14_04-fuse
 
 # Shut down the base image
 sudo docker stop dockerfile-cannyos-ubuntu-14_04-base
@@ -120,7 +124,7 @@ sudo rm -r -f "/CannyOS/build/dockerfile-cannyos-ubuntu-14_04-fuse/*"
 # Remove any old containers
 sudo docker rm dockerfile-cannyos-ubuntu-14_04-fuse
 
-sudo docker run -i -t -rm \
+sudo docker run -i -t --rm \
  --privileged=true --lxc-conf="native.cgroup.devices.allow = c 10:229 rwm" \
  --volume "/CannyOS/build/dockerfile-cannyos-ubuntu-14_04-fuse":"/CannyOS/Host" \
  --name "dockerfile-cannyos-ubuntu-14_04-fuse" \
