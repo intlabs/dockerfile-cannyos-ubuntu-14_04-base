@@ -19,16 +19,27 @@
 # limitations under the License.
 #
 
+echo ""
+echo "***************************************************************"
+echo "***************************************************************"
+echo "**                                                           **"
+echo "**   Welcome to CannyOS:  Ubuntu docker container builder    **"
+echo "**                                                           **"
+echo "***************************************************************"
+echo "***************************************************************"
+echo ""
+
 sudo docker build -t="intlabs/dockerfile-cannyos-ubuntu-14_04-base" github.com/intlabs/dockerfile-cannyos-ubuntu-14_04-base
 
 $CONTAINER_MOUNT_POINT="~/CannyOS/dockerfile-cannyos-ubuntu-14_04-base"
 
+mkdir -p "$CONTAINER_MOUNT_POINT"
 sudo docker run -i -t --rm --privileged=true --lxc-conf="native.cgroup.devices.allow = c 10:229 rwm" -v $CONTAINER_MOUNT_POINT:/CannyOS/Host intlabs/dockerfile-cannyos-ubuntu-14_04-base
 
 x=0
 while [ "$x" -lt 3600 -a ! -e "$CONTAINER_MOUNT_POINT/done" ]; do
    x=$((x+1))
-   sleep 10.0
+   sleep 1.0
    echo "Post Install script run time: $x seconds"
 done
 if [ -e "$CONTAINER_MOUNT_POINT/done" ]

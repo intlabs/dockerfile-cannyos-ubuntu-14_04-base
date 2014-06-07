@@ -20,6 +20,8 @@ This repository contains the *Dockerfile* and *associated files* for setting up 
 
 	`sudo docker build -t="intlabs/dockerfile-cannyos-ubuntu-14_04-base" github.com/intlabs/dockerfile-cannyos-ubuntu-14_04-base`
 
+
+wget -O - https://raw.githubusercontent.com/intlabs/dockerfile-cannyos-ubuntu-14_04-base/master/Build.sh | bash
 ### Usage
 
 * this will run and drop you into a session with privileges to run FUSE:
