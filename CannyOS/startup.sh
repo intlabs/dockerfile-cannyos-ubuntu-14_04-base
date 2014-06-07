@@ -3,7 +3,7 @@
 
 # Run postinstall script if required.
 #if [ /CannyOS/post-install.sh ]; then
-	/CannyOS/post-install.sh
+	/CannyOS/post-install.sh &
 #fi
 
 # Startup ssh
