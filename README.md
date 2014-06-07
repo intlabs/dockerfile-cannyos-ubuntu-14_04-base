@@ -1,4 +1,4 @@
-## Ubuntu Desktop (GNOME) Dockerfile
+## CannyOS Ubuntu Dockerfile
 
 
 This repository contains the *Dockerfile* and *associated files* for setting up a container with Ubuntu for CannyOS
@@ -18,7 +18,7 @@ This repository contains the *Dockerfile* and *associated files* for setting up 
 
 2. You can then build the container from the Dockerfile:
 
-	`sudo docker build -t="intlabs/dockerfile-cannyos-ubuntu-14_04-base" github.com/intlabs/dockerfile-cannyos-ubuntu-14_04-base
+	`sudo docker build -t="intlabs/dockerfile-cannyos-ubuntu-14_04-base" github.com/intlabs/dockerfile-cannyos-ubuntu-14_04-base`
 
 ### SuperQuick Install
 
@@ -40,10 +40,5 @@ This repository contains the *Dockerfile* and *associated files* for setting up 
 
 * this will run and drop you into a session:
 
-	`sudo docker run -it --rm -p 222:22 intlabs/dockerfile-ubuntu-openstack-commandline-clients`
-
-* or for silent running:
-
-	`sudo docker run -it -d -p 222:22 intlabs/dockerfile-ubuntu-openstack-commandline-clients`
-
+`sudo docker run -it --rm --privileged=true --lxc-conf="native.cgroup.devices.allow = c 10:229 rwm" intlabs/dockerfile-cannyos-ubuntu-14_04-base`
 

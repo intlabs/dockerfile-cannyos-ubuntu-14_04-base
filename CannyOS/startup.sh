@@ -2,7 +2,7 @@
 # (c) Pete Birley
 
 # Run postinstall script if required.
-if [ test -e "post-install.sh" ]; then
+if [ post-install.sh ]; then
 	./post-install.sh
 fi
 
