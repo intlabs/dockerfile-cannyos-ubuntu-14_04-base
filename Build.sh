@@ -79,6 +79,7 @@ echo "*****************************************************"
 echo ""
 
 # Wait for post-install script to finish running (Currently time out at ) 
+sleep 10
 x=0
 while [ "$x" -lt 43200 -a ! -e "/CannyOS/build/dockerfile-cannyos-ubuntu-14_04-base/done" ]; do
    x=$((x+1))
