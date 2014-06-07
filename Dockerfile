@@ -55,6 +55,7 @@ ADD /CannyOS/startup.sh /CannyOS/startup.sh
 RUN chmod +x /CannyOS/startup.sh
 ADD /CannyOS/post-install.sh /CannyOS/post-install.sh
 RUN chmod +x /CannyOS/post-install.sh
+ADD /CannyOS/CannyOS.splash /CannyOS/CannyOS.splash
 
 # Define mountable directories.
 VOLUME ["/data"]

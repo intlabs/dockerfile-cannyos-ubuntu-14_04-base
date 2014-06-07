@@ -18,7 +18,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-wget -O - https://raw.githubusercontent.com/intlabs/dockerfile-cannyos-ubuntu-14_04-base/master/CannyOS/CannyOS.splash -q | cat
+curl https://raw.githubusercontent.com/intlabs/dockerfile-cannyos-ubuntu-14_04-base/master/CannyOS/CannyOS.splash
 #     *****************************************************
 #     *                                                   *
 #     *        _____                    ____  ____        *
