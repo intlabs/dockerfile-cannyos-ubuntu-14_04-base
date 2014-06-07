@@ -3,7 +3,7 @@
 
 # Run postinstall script if required.
 if [ post-install.sh ]; then
-	./post-install.sh
+	post-install.sh
 fi
 
 # Startup ssh
