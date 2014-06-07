@@ -8,10 +8,6 @@
 # Pull base image.
 FROM ubuntu:14.04
 
-# Set environment variables.
-ENV HOME /root
-ENV DEBIAN_FRONTEND noninteractive
-
 # Install.
 RUN \
   sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
@@ -26,6 +22,10 @@ ADD root/.bashrc /root/.bashrc
 ADD root/.gitconfig /root/.gitconfig
 ADD root/scripts /root/scripts
 RUN chmod -R +x /root/scripts/
+
+# Set environment variables.
+ENV HOME /root
+ENV DEBIAN_FRONTEND noninteractive
 
 # Upstart and DBus have issues inside docker.
 RUN dpkg-divert --local --rename --add /sbin/initctl && ln -sf /bin/true /sbin/initctl
