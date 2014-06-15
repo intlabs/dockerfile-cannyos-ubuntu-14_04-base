@@ -29,6 +29,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV DISTRO ubuntu
 
 # Install base utilities.
+RUN apt-get update && apt-get install -y curl
 RUN curl -s https://raw.githubusercontent.com/intlabs/cannyos-utils/master/base-containers/packages/packages-10.sh | bash
 
 #Add for root user.
