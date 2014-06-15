@@ -37,11 +37,6 @@ RUN \
   apt-get install -y software-properties-common && \
   apt-get install -y byobu curl git htop man unzip vim wget sed
 
-#Create user
-#RUN adduser --disabled-password --gecos "" user
-#RUN echo 'user:acoman' |chpasswd
-
-RUN curl -s https://raw.githubusercontent.com/intlabs/cannyos-utils/master/base-containers/add-user/adduser.sh | bash
 
 
 # Add files.
@@ -49,6 +44,14 @@ ADD root/.bashrc /root/.bashrc
 ADD root/.gitconfig /root/.gitconfig
 ADD root/scripts /root/scripts
 RUN chmod -R +x /root/scripts/*
+
+#Create user
+#RUN adduser --disabled-password --gecos "" user
+#RUN echo 'user:acoman' |chpasswd
+
+RUN curl -s https://raw.githubusercontent.com/intlabs/cannyos-utils/master/base-containers/add-user/adduser.sh | bash
+
+
 
 # Set the working directory
 WORKDIR /
