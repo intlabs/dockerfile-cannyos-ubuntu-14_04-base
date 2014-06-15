@@ -28,12 +28,6 @@ ENV HOME /root
 ENV DEBIAN_FRONTEND noninteractive
 ENV DISTRO ubuntu
 
-#Create user
-#RUN adduser --disabled-password --gecos "" user
-#RUN echo 'user:acoman' |chpasswd
-RUN curl -s https://raw.githubusercontent.com/intlabs/cannyos-utils/master/base-containers/add-user/adduser.sh | bash
-
-
 # Install base utilities.
 RUN \
   sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
@@ -42,6 +36,13 @@ RUN \
   apt-get install -y build-essential && \
   apt-get install -y software-properties-common && \
   apt-get install -y byobu curl git htop man unzip vim wget sed
+
+#Create user
+#RUN adduser --disabled-password --gecos "" user
+#RUN echo 'user:acoman' |chpasswd
+RUN curl -s https://raw.githubusercontent.com/intlabs/cannyos-utils/master/base-containers/add-user/adduser.sh | bash
+
+
 
 # Add files.
 ADD root/.bashrc /root/.bashrc
