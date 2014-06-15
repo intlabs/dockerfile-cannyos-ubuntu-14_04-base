@@ -29,15 +29,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV DISTRO ubuntu
 
 # Install base utilities.
-RUN \
-  sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
-  apt-get update && \
-  apt-get -y upgrade && \
-  apt-get install -y build-essential && \
-  apt-get install -y software-properties-common && \
-  apt-get install -y byobu curl git htop man unzip nano wget sed
-
-
+RUN curl -s https://raw.githubusercontent.com/intlabs/cannyos-utils/master/base-containers/packages/packages-10.sh | bash
 
 #Add for root user.
 ADD root /root
