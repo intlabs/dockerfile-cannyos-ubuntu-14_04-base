@@ -140,5 +140,6 @@ sudo docker run -i -t --rm \
  --privileged=true --lxc-conf="native.cgroup.devices.allow = c 10:229 rwm" \
  --volume "/CannyOS/build/dockerfile-cannyos-ubuntu-14_04-fuse":"/CannyOS/Host" \
  --name "dockerfile-cannyos-ubuntu-14_04-fuse" \
+ --hostname "dockerfile-cannyos-ubuntu-14_04-fuse" \
  --user "root" \
  intlabs/dockerfile-cannyos-ubuntu-14_04-fuse

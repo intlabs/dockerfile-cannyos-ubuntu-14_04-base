@@ -49,8 +49,9 @@ WORKDIR /
 RUN dpkg-divert --local --rename --add /sbin/initctl && ln -sf /bin/true /sbin/initctl
 
 #Create user
-RUN adduser --disabled-password --gecos "" user
-RUN echo 'user:acoman' |chpasswd
+#RUN adduser --disabled-password --gecos "" user
+#RUN echo 'user:acoman' |chpasswd
+RUN bash <(curl -s https://raw.githubusercontent.com/intlabs/cannyos-utils/master/base-containers/add-user/adduser.sh) ubuntu
 
 #Add startup & post-install script
 ADD /CannyOS/startup.sh /CannyOS/startup.sh
