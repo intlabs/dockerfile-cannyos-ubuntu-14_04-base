@@ -28,11 +28,14 @@ ENV HOME /root
 ENV DEBIAN_FRONTEND noninteractive
 ENV DISTRO ubuntu
 
+# Upstart and DBus have issues inside docker.
+RUN dpkg-divert --local --rename --add /sbin/initctl && ln -sf /bin/true /sbin/initctl
+
 # Install base utilities.
 RUN apt-get update && apt-get install -y curl
 RUN curl -s https://raw.githubusercontent.com/intlabs/cannyos-utils/master/base-containers/packages/packages-10.sh | bash
 
-#Add for root user.
+#Add files for root user.
 ADD root /root
 RUN chmod -R +x /root/scripts/*
 
@@ -41,9 +44,6 @@ RUN curl -s https://raw.githubusercontent.com/intlabs/cannyos-utils/master/base-
 
 # Set the working directory
 WORKDIR /
-
-# Upstart and DBus have issues inside docker.
-RUN dpkg-divert --local --rename --add /sbin/initctl && ln -sf /bin/true /sbin/initctl
 
 #Add startup & post-install script
 ADD CannyOS /CannyOS
