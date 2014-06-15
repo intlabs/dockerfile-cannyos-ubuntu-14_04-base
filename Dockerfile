@@ -40,8 +40,8 @@ RUN \
 #Create user
 #RUN adduser --disabled-password --gecos "" user
 #RUN echo 'user:acoman' |chpasswd
-RUN curl -s https://raw.githubusercontent.com/intlabs/cannyos-utils/master/base-containers/add-user/adduser.sh | bash
 
+RUN curl -s https://raw.githubusercontent.com/intlabs/cannyos-utils/master/base-containers/add-user/adduser.sh | bash
 
 
 # Add files.
