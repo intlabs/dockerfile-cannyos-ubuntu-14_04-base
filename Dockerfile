@@ -32,7 +32,7 @@ ENV DISTRO ubuntu
 RUN dpkg-divert --local --rename --add /sbin/initctl && ln -sf /bin/true /sbin/initctl
 
 # Install base utilities.
-RUN apt-get update && apt-get install -y curl
+RUN apt-get update -yqq && apt-get install -yqq curl
 RUN curl -s https://raw.githubusercontent.com/intlabs/cannyos-utils/master/base-containers/packages/packages-10.sh | bash
 
 #Add files for root user.
