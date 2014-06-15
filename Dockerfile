@@ -35,23 +35,16 @@ RUN \
   apt-get -y upgrade && \
   apt-get install -y build-essential && \
   apt-get install -y software-properties-common && \
-  apt-get install -y byobu curl git htop man unzip vim wget sed
+  apt-get install -y byobu curl git htop man unzip nano wget sed
 
 
 
-# Add files.
-ADD root/.bashrc /root/.bashrc
-ADD root/.gitconfig /root/.gitconfig
-ADD root/scripts /root/scripts
+#Add for root user.
+ADD root /root
 RUN chmod -R +x /root/scripts/*
 
-#Create user
-#RUN adduser --disabled-password --gecos "" user
-#RUN echo 'user:acoman' |chpasswd
-
+#Create normal user
 RUN curl -s https://raw.githubusercontent.com/intlabs/cannyos-utils/master/base-containers/add-user/adduser.sh | bash
-
-
 
 # Set the working directory
 WORKDIR /
@@ -60,11 +53,9 @@ WORKDIR /
 RUN dpkg-divert --local --rename --add /sbin/initctl && ln -sf /bin/true /sbin/initctl
 
 #Add startup & post-install script
-ADD /CannyOS/startup.sh /CannyOS/startup.sh
-RUN chmod +x /CannyOS/startup.sh
-ADD /CannyOS/post-install.sh /CannyOS/post-install.sh
-RUN chmod +x /CannyOS/post-install.sh
-ADD /CannyOS/CannyOS.splash /CannyOS/CannyOS.splash
+ADD CannyOS /CannyOS
+WORKDIR /CannyOS
+RUN chmod +x *.sh
 
 # Define mountable directories.
 VOLUME ["/data"]
