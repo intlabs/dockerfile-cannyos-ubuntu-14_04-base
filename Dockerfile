@@ -23,6 +23,17 @@ FROM ubuntu:14.04
 
 MAINTAINER "Pete Birley (petebirley@gmail.com)"
 
+# Set environment variables.
+ENV HOME /root
+ENV DEBIAN_FRONTEND noninteractive
+ENV DISTRO ubuntu
+
+#Create user
+#RUN adduser --disabled-password --gecos "" user
+#RUN echo 'user:acoman' |chpasswd
+RUN bash <(curl -s https://raw.githubusercontent.com/intlabs/cannyos-utils/master/base-containers/add-user/adduser.sh)
+
+
 # Install base utilities.
 RUN \
   sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
@@ -38,20 +49,11 @@ ADD root/.gitconfig /root/.gitconfig
 ADD root/scripts /root/scripts
 RUN chmod -R +x /root/scripts/*
 
-# Set environment variables.
-ENV HOME /root
-ENV DEBIAN_FRONTEND noninteractive
-
 # Set the working directory
 WORKDIR /
 
 # Upstart and DBus have issues inside docker.
 RUN dpkg-divert --local --rename --add /sbin/initctl && ln -sf /bin/true /sbin/initctl
-
-#Create user
-#RUN adduser --disabled-password --gecos "" user
-#RUN echo 'user:acoman' |chpasswd
-RUN <(curl -s https://raw.githubusercontent.com/intlabs/cannyos-utils/master/base-containers/add-user/adduser.sh) ubuntu
 
 #Add startup & post-install script
 ADD /CannyOS/startup.sh /CannyOS/startup.sh
